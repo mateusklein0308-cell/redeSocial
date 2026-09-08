@@ -25,7 +25,7 @@ body {
 }
 
 .phone-screen {
-  background: #ede3e3;
+  background: #111418; /* Cor ajustada para combinar com texto claro */
   border-radius: 32px;
   overflow: hidden;
   display: flex;
@@ -56,12 +56,12 @@ body {
 .username {
   font-weight: 600;
   font-size: 14px;
-  color: #0e0c0c;
+  color: #ffffff;
 }
 
 .more-options {
   cursor: pointer;
-  color: #0e1012;
+  color: #ffffff;
 }
 
 /* Mídia / Foto */
@@ -70,6 +70,7 @@ body {
   width: 100%;
   aspect-ratio: 4 / 5;
   background-color: #eee;
+  cursor: pointer; /* Indicação visual de clique */
 }
 
 .post-media img.main-img {
@@ -101,7 +102,7 @@ body {
   bottom: -2px;
   right: -2px;
   background: #561296;
-  color: rgb(18, 5, 5);
+  color: #ffffff;
   font-size: 10px;
   font-weight: bold;
   width: 16px;
@@ -147,6 +148,21 @@ body {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+  transition: transform 0.15s ease, fill 0.2s ease, stroke 0.2s ease;
+}
+
+/* Estilos de botão ativado (Curtido / Salvo) */
+.like-btn.liked svg {
+  fill: #e53935;
+  stroke: #e53935;
+}
+
+.like-btn.liked {
+  color: #e53935;
+}
+
+.bookmark-btn.bookmarked svg {
+  fill: #ffffff;
 }
 
 /* Texto de Curtidas */
@@ -186,4 +202,3 @@ body {
   stroke: currentColor;
   stroke-width: 2;
 }
-

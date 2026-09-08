@@ -1,92 +1,92 @@
 document.addEventListener("DOMContentLoaded", () => {
     const likeBtn = document.querySelector(".like-btn");
     const postMedia = document.querySelector(".post-media");
-if (!likeBtn) return;
+    const bookmarkBtn = document.querySelector(".bookmark-btn");
 
-const likesCountSpan = likeBtn.querySelector(".likes-count");
-const bookmarkBtn = document.querySelector(".bookmark-btn");
+    if (!likeBtn) return;
 
-let isLiked = false;
-let baseLiked = 0;
+    const likesCountSpan = likeBtn.querySelector(".likes-count");
 
-if (likesCountSpan){
-    likesCountSpan.textContent = "0";
-}
+    let isLiked = false;
+    let baseLikes = 0;
 
-//números grandes
-
-function formatLikes(num) {
-   if(num >=1000){
-    return (num/1000).toFixed(1)+"K";
-   } 
-   return num.toString();
-}
-
-function addLike(){
-    baseLikes++;
-    isLiked = true;
-    likeBtn.classList.add("Liked");
-
-    if(likesCountSpan){
-        likesCountSpan.textContent = formatLikes(baseLikes);
+    if (likesCountSpan) {
+        likesCountSpan.textContent = "0";
     }
-}
 
-    // Efeito visual de animação (bounce) no coração[cite: 1]
-    const svg = likeBtn.querySelector("svg");
-    if (svg) {
-      svg.style.transform = "scale(1.4)";
-      setTimeout(() => {
-        svg.style.transform = "scale(1)";
-      }, 150);
+    // Formata números grandes (Ex: 1200 -> 1.2K)
+    function formatLikes(num) {
+        if (num >= 1000) {
+            return (num / 1000).toFixed(1) + "K";
+        }
+        return num.toString();
     }
-  }
 
-  // Evento de clique no BOTÃO DE CORAÇÃO (Curte ou Descurte)
-  likeBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-
-    if (isLiked) {
-      // Se já estava curtido, descurte (-1)
-      isLiked = false;
-      baseLikes = Math.max(0, baseLikes - 1);
-      likeBtn.classList.remove("liked");
-      if (likesCountSpan) {
-        likesCountSpan.textContent = formatLikes(baseLikes);
-      }
-    } else {
-      // Se não estava curtido, adiciona curtida
-      addLike();
+    // Função de animação no SVG
+    function animateSvg(element) {
+        const svg = element.querySelector("svg");
+        if (svg) {
+            svg.style.transform = "scale(1.3)";
+            setTimeout(() => {
+                svg.style.transform = "scale(1)";
+            }, 150);
+        }
     }
-  });
 
-  // Evento de clique na IMAGEM PRINCIPAL (Sempre aumenta likes)
-  if (postMedia) {
-    postMedia.addEventListener("click", (e) => {
-      e.stopPropagation();
-      addLike();
+    // Adiciona a curtida
+    function addLike() {
+        if (!isLiked) {
+            baseLikes++;
+            isLiked = true;
+            likeBtn.classList.add("liked");
+
+            if (likesCountSpan) {
+                likesCountSpan.textContent = formatLikes(baseLikes);
+            }
+        }
+        animateSvg(likeBtn);
+    }
+
+    // Remove a curtida
+    function removeLike() {
+        if (isLiked) {
+            isLiked = false;
+            baseLikes = Math.max(0, baseLikes - 1);
+            likeBtn.classList.remove("liked");
+
+            if (likesCountSpan) {
+                likesCountSpan.textContent = formatLikes(baseLikes);
+            }
+        }
+        animateSvg(likeBtn);
+    }
+
+    // Evento no BOTÃO DE CORAÇÃO (Alterna entre curtir e descurtir)
+    likeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (isLiked) {
+            removeLike();
+        } else {
+            addLike();
+        }
     });
-  }
 
-  // Evento no botão de SALVAR (Bookmark)[cite: 1]
-  if (bookmarkBtn) {
-    let isBookmarked = false;
-    bookmarkBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      isBookmarked = !isBookmarked;
-      bookmarkBtn.classList.toggle("bookmarked", isBookmarked);
+    // Evento na IMAGEM PRINCIPAL (Curte se não estiver curtido ou re-anima)
+    if (postMedia) {
+        postMedia.addEventListener("click", (e) => {
+            e.stopPropagation();
+            addLike();
+        });
+    }
 
-      const svg = bookmarkBtn.querySelector("svg");
-      if (svg) {
-        svg.style.transform = "scale(1.2)";
-        setTimeout(() => {
-          svg.style.transform = "scale(1)";
-        }, 150);
-      }
-    });
-  
+    // Evento no botão de SALVAR (Bookmark)
+    if (bookmarkBtn) {
+        let isBookmarked = false;
+        bookmarkBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            isBookmarked = !isBookmarked;
+            bookmarkBtn.classList.toggle("bookmarked", isBookmarked);
+            animateSvg(bookmarkBtn);
+        });
+    }
 });
-
-
-
-
