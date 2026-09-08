@@ -56,12 +56,12 @@ body {
 .username {
   font-weight: 600;
   font-size: 14px;
-  color: #ffffff;
+  color: #050000;
 }
 
 .more-options {
   cursor: pointer;
-  color: #ffffff;
+  color: #070000;
 }
 
 /* Mídia / Foto */
@@ -69,7 +69,7 @@ body {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
-  background-color: #eee;
+  background-color: #020000;
   cursor: pointer; /* Indicação visual de clique */
 }
 
