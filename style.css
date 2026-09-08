@@ -134,7 +134,7 @@ body {
   gap: 5px;
   font-size: 13px;
   font-weight: 600;
-  color: #ffffff;
+  color: #530d16;
   cursor: pointer;
   background: none;
   border: none;
@@ -162,22 +162,22 @@ body {
 }
 
 .bookmark-btn.bookmarked svg {
-  fill: #ffffff;
+  fill: #ec2f2f;
 }
 
 /* Texto de Curtidas */
 .post-details {
   padding: 0 16px 12px 16px;
   font-size: 13px;
-  color: #e0e5ec;
+  color: #ca2f2f;
 }
 
 .likes {
-  color: #e8ebef;
+  color: #c92323;
 }
 
 .likes strong {
-  color: #e9eef6;
+  color: #921414;
 }
 
 /* Barra de Navegação Inferior */
@@ -191,7 +191,7 @@ body {
 }
 
 .nav-item {
-  color: #e5e8ee;
+  color: #02050a;
   cursor: pointer;
 }
 
